@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import { endpoints } from '../lib/endpoints';
 
 export default function Home() {
   return (
@@ -15,34 +16,31 @@ export default function Home() {
         <p className={styles.description}>The documentation</p>
 
         <div className={styles.grid}>
-          <div className={styles.card}>
-            <h2>
-              <code>GET /trips</code>
-            </h2>
-            <p>List all the trips</p>
-            <p>...</p>
-          </div>
-          <div className={styles.card}>
-            <h2>
-              <code>GET /trip</code>
-            </h2>
-            <p>Get the details of a trip</p>
-            <p>...</p>
-          </div>
-          <div className={styles.card}>
-            <h2>
-              <code>POST /trip</code>
-            </h2>
-            <p>Create a new trip</p>
-            <p>...</p>
-          </div>
-          <div className={styles.card}>
-            <h2>
-              <code>PUT /trip</code>
-            </h2>
-            <p>Edit new trip</p>
-            <p>...</p>
-          </div>
+          {endpoints.map((endpoint, index) => {
+            return (
+              <div key={index} className={styles.card}>
+                <h2><code>{endpoint.name}</code></h2>
+                <p>{endpoint.description}</p>
+                {/* endpoint.parameter */}
+                <ul>
+                  {endpoint.parameters && (
+                    <>
+                      <p>Parameters</p>
+                      <ul>
+                        {endpoint.parameters.map((parameter, parameterIndex) => {
+                          return (
+                            <li key={parameterIndex}>
+                              <b>{parameter.name}</b>: {parameter.description}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </>
+                  )}
+                </ul>
+              </div>
+            )
+          })}
         </div>
       </main>
     </div>
