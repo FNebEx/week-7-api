@@ -1,8 +1,31 @@
-GET http://localhost:3000/api/trips HTTP/1.1
+GET http://localhost:3000/api/trips/ HTTP/1.1
 
 ###
 
-POST http://localhost:3000/api/trips HTTP/1.1
+GET http://localhost:3000/api/trips/1 HTTP/1.1
+
+###
+
+POST http://localhost:3000/api/trips/ HTTP/1.1
 Content-Type: application/json
 
-content
+{
+  "user": 5,
+  "name": "Dad"
+}
+
+###
+
+GET http://localhost:3000/api/expenses/ HTTP/1.1
+
+###
+
+POST http://localhost:3000/api/expenses/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "trip": 1,
+  "name": "Gasoline",
+  "amount": 50,
+  "currency": "USD"
+}
